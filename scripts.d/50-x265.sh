@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/binarrii/x265.git"
-SCRIPT_COMMIT="a64fc2911236eb0fab4f01bf78c638b1ef626527"
+SCRIPT_COMMIT="bf30abdb79c9ffe5bb903c555fe7298264a41da2"
 
 ffbuild_enabled() {
     [[ $VARIANT == lgpl* ]] && return -1
