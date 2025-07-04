@@ -3,8 +3,8 @@
 # SCRIPT_REPO="https://bitbucket.org/multicoreware/x265_git.git"
 # SCRIPT_COMMIT="1e993ee88063103904867ced35f7fcfc8e0748cf"
 
-SCRIPT_REPO="https://github.com/binarrii/x265.git"
-SCRIPT_COMMIT="1eb1774f31847d3090111548c37ce3a4a2451369"
+# SCRIPT_REPO="https://github.com/binarrii/x265.git"
+# SCRIPT_COMMIT="1eb1774f31847d3090111548c37ce3a4a2451369"
 
 ffbuild_enabled() {
     [[ $VARIANT == lgpl* ]] && return -1
@@ -27,6 +27,8 @@ ffbuild_dockerbuild() {
     )
 
     sed -i '1i#include <cstdint>' source/dynamicHDR10/json11/json11.cpp
+    sed -i 's/X265_VERSION/X265_WASU/g' source/common/version.cpp
+    sed -i 's/ONOS COMPILEDBY BITS ASM ATOMICS CHECKED BITDEPTH ADD8 ADD10 ADD12/"Wasu-AI-Team"/g' source/common/version.cpp
 
     if [[ $TARGET != *32 ]]; then
         mkdir 8bit 10bit 12bit
