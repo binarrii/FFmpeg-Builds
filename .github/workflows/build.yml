@@ -247,7 +247,7 @@ jobs:
   build_ffmpeg:
     name: Build ffmpeg
     #if: ${{ ( github.event.inputs.buildOnly == 'true' && !cancelled() ) || success() }}
-    needs: build_targets
+    #needs: build_targets
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
