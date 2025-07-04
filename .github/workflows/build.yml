@@ -218,12 +218,12 @@ jobs:
         run: T="$(echo -n ${{ github.token }} | sha256sum | head -c 64)" && echo -e "::add-mask::${T}\n::stop-commands::${T}"
       - name: Generate Dockerfile
         run: ./generate.sh ${{ matrix.target }} ${{ matrix.variant }}
-      # - name: Cache
-      #   uses: actions/cache/restore@v4
-      #   with:
-      #     path: .cache/downloads
-      #     key: download-cache-${{ steps.dl_cache.outputs.dltagname }}
-      #     fail-on-cache-miss: true
+      - name: Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/downloads
+          key: download-cache-${{ steps.dl_cache.outputs.dltagname }}
+          fail-on-cache-miss: false
       - name: Build target base image
         uses: docker/build-push-action@v6
         with:
@@ -233,7 +233,7 @@ jobs:
           provenance: false
           tags: ${{ steps.imagename.outputs.name }}:latest
           cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}:cache
-          # cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}:cache
+          cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}:cache
       - name: Cleanup
         continue-on-error: true
         uses: BtbN/delete-untagged-ghcr-action@main
