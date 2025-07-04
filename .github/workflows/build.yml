@@ -246,14 +246,14 @@ jobs:
           untagged_only: true
   build_ffmpeg:
     name: Build ffmpeg
-    if: ${{ ( github.event.inputs.buildOnly == 'true' && !cancelled() ) || success() }}
+    #if: ${{ ( github.event.inputs.buildOnly == 'true' && !cancelled() ) || success() }}
     needs: build_targets
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        target: [win64,winarm64,linux64,linuxarm64]
-        variant: [gpl,lgpl,gpl 6.1,gpl 7.1,lgpl 6.1,lgpl 7.1,gpl-shared,lgpl-shared,gpl-shared 6.1,gpl-shared 7.1,lgpl-shared 6.1,lgpl-shared 7.1]
+        target: [linux64]
+        variant: [gpl 7.1,gpl-shared 7.1]
     steps:
       - name: Free Disk-Space
         run: df -h && sudo apt-get clean && docker system prune -a -f && sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc && df -h
@@ -282,7 +282,7 @@ jobs:
           path: artifacts/*
   publish_release:
     name: Publish release
-    if: ${{ !cancelled() && ( github.event_name == 'schedule' || github.event.inputs.doRelease == 'true' ) && needs.build_ffmpeg.result == 'success' }}
+    #if: ${{ !cancelled() && ( github.event_name == 'schedule' || github.event.inputs.doRelease == 'true' ) && needs.build_ffmpeg.result == 'success' }}
     needs: build_ffmpeg
     runs-on: ubuntu-latest
     steps:
