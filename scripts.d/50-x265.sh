@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# SCRIPT_REPO="https://bitbucket.org/multicoreware/x265_git.git"
+SCRIPT_REPO="https://bitbucket.org/multicoreware/x265_git.git"
+SCRIPT_COMMIT="32e25ffcf810c5fe284901859b369270824c4596"
 # SCRIPT_COMMIT="1e993ee88063103904867ced35f7fcfc8e0748cf"
 
 # SCRIPT_REPO="https://github.com/binarrii/x265.git"
