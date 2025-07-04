@@ -28,7 +28,7 @@ ffbuild_dockerbuild() {
     )
 
     sed -i '1i#include <cstdint>' source/dynamicHDR10/json11/json11.cpp
-    sed -i 's/X265_VERSION/X265_WASU/g' source/common/version.cpp
+    # sed -i 's/X265_VERSION/X265_WASU/g' source/common/version.cpp
     sed -i 's/ONOS COMPILEDBY BITS ASM ATOMICS CHECKED BITDEPTH ADD8 ADD10 ADD12/"Wasu-AI-Team"/g' source/common/version.cpp
 
     if [[ $TARGET != *32 ]]; then
